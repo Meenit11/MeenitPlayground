@@ -1,0 +1,316 @@
+/* Odd One In - Warm, playful coral/peach theme */
+.odd-one-in-app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(160deg, #fff5f0 0%, #ffe4dc 30%, #ffd4c4 70%, #ffb4a2 100%);
+  font-family: 'Nunito', sans-serif;
+}
+
+.odd-one-in-app .screen {
+  padding: 24px 20px;
+  max-width: 428px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.odd-one-in-app .back-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #e07a5f;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.odd-one-in-app .logo-small {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  display: block;
+  object-fit: contain;
+}
+
+.odd-one-in-app .tagline {
+  font-size: 0.9rem;
+  color: #6b5b4f;
+  text-align: center;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.odd-one-in-app input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #f4a261;
+  border-radius: 14px;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  background: white;
+}
+
+.odd-one-in-app .btn-primary {
+  background: linear-gradient(135deg, #e07a5f 0%, #f4a261 100%);
+  color: white;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(224, 122, 95, 0.4);
+}
+
+.odd-one-in-app .btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.odd-one-in-app a.btn-primary,
+.odd-one-in-app a.btn-secondary {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.odd-one-in-app a.btn-primary {
+  background: linear-gradient(135deg, #e07a5f 0%, #f4a261 100%);
+  color: white;
+  border: none;
+}
+
+.odd-one-in-app a.btn-secondary {
+  background: white;
+  color: #e07a5f;
+  border: 2px solid #e07a5f;
+}
+
+.odd-one-in-app .btn-secondary {
+  background: white;
+  color: #e07a5f;
+  border: 2px solid #e07a5f;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-weight: 700;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.odd-one-in-app .error-msg {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.odd-one-in-app .loading-msg {
+  text-align: center;
+  color: #6b5b4f;
+}
+
+/* Lobby */
+.odd-lobby__code {
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.odd-lobby__code-label { display: block; font-size: 0.85rem; color: #6b5b4f; }
+.odd-lobby__code-value { font-size: 2rem; font-weight: 800; color: #e07a5f; letter-spacing: 4px; }
+
+.odd-lobby__share { display: flex; gap: 12px; margin-bottom: 20px; }
+.odd-lobby__share-btn {
+  flex: 1;
+  padding: 12px 16px;
+  background: white;
+  border: 2px solid #f4a261;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #e07a5f;
+  cursor: pointer;
+}
+
+.odd-lobby__count { font-weight: 700; color: #6b5b4f; margin-bottom: 12px; }
+
+.odd-lobby__players {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.odd-lobby__player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.odd-lobby__player:last-child { border-bottom: none; }
+
+.odd-lobby__kick {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.odd-lobby__back { margin-top: 12px !important; }
+.odd-lobby__waiting { font-weight: 600; color: #6b5b4f; margin: 20px 0; }
+.odd-lobby__rules {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: #6b5b4f;
+}
+
+/* Question Round */
+.odd-question__round { font-size: 1.1rem; color: #6b5b4f; margin-bottom: 8px; }
+.odd-question__q {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2d3436;
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.odd-question__ready {
+  text-align: center;
+  margin: 24px 0;
+}
+
+.odd-question__countdown { display: block; font-size: 1.2rem; color: #6b5b4f; }
+.odd-question__countdown-num {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #e07a5f;
+  display: block;
+  margin-top: 8px;
+}
+
+.odd-question__timer {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  color: #2d3436;
+  margin: 20px 0;
+}
+
+.odd-question__timer--urgent {
+  color: #c0392b;
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.1); }
+}
+
+.odd-question__eliminated {
+  padding: 16px;
+  background: #95a5a6;
+  color: white;
+  text-align: center;
+  border-radius: 12px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.odd-question__host-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.odd-question__host-controls button {
+  flex: 1;
+  min-width: 80px;
+  padding: 12px;
+  background: white;
+  border: 2px solid #f4a261;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #e07a5f;
+  cursor: pointer;
+}
+
+.odd-question__waiting { text-align: center; color: #6b5b4f; margin-top: 24px; }
+
+/* Answer Review */
+.odd-review__title { font-size: 1.3rem; margin-bottom: 20px; color: #2d3436; }
+.odd-review__list {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.odd-review__item {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.odd-review__item--duplicate { background: #fff3cd; }
+.odd-review__item--selected { background: #e07a5f; color: white; }
+.odd-review__item--selected .odd-review__answer { color: rgba(255,255,255,0.9); }
+
+.odd-review__name { font-weight: 700; }
+.odd-review__answer { color: #636e72; }
+
+.odd-review__actions { display: flex; flex-direction: column; gap: 12px; }
+.odd-review__waiting { text-align: center; color: #6b5b4f; }
+
+/* Winner */
+.odd-winner__title { font-size: 2rem; text-align: center; margin-bottom: 12px; }
+.odd-winner__names {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  color: #e07a5f;
+  margin-bottom: 16px;
+}
+
+.odd-winner__msg { text-align: center; color: #6b5b4f; margin-bottom: 32px; }
+.odd-winner__actions { display: flex; flex-direction: column; gap: 12px; }
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}

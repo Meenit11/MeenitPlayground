@@ -1,0 +1,29 @@
+{
+  "name": "meenits-playground",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "vite",
+    "dev:server": "node server/index.js",
+    "build": "npm run copy-assets && vite build",
+    "copy-assets": "node scripts/copy-assets.js",
+    "prepare": "npm run copy-assets",
+    "preview": "vite preview",
+    "start": "node server/index.js",
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "framer-motion": "^10.16.5",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "vite": "^5.0.0",
+    "concurrently": "^8.2.2"
+  }
+}

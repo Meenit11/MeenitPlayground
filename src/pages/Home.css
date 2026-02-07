@@ -1,0 +1,159 @@
+.home {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px 20px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-attachment: fixed;
+}
+
+.home__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.home__logo {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.home__tagline {
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.home__subtitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  text-align: center;
+  margin: 0 0 24px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.home__games {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.game-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.game-card__link {
+  display: block;
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.game-card__logo-wrap {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-card__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.game-card--odd-one-in .game-card__logo-wrap {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.game-card--undercover .game-card__logo-wrap {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.game-card--mafia .game-card__logo-wrap {
+  background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+}
+
+.game-card__title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: #2d3436;
+}
+
+.game-card__tagline {
+  font-size: 0.85rem;
+  color: #636e72;
+  margin: 0 0 8px;
+  font-style: italic;
+}
+
+.game-card__description {
+  font-size: 0.95rem;
+  color: #636e72;
+  margin: 0 0 12px;
+}
+
+.game-card__meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 0.8rem;
+  color: #74b9ff;
+  font-weight: 600;
+}
+
+.game-card__play-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.game-card--odd-one-in .game-card__play-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.game-card--undercover .game-card__play-btn {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.game-card--mafia .game-card__play-btn {
+  background: linear-gradient(135deg, #434343 0%, #000000 100%);
+}
+
+.home__footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 429px) {
+  .home {
+    padding: 32px 24px;
+  }
+  .home__logo {
+    max-width: 320px;
+  }
+}
