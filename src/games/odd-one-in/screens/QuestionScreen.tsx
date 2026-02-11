@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
 import { useOddRoom } from '../context/OddRoomContext';
-import questionsData from '../../../data/questions.json';
+import questionsData from '../../../../data/questions.json';
 import type { QuestionTier, OddPlayer } from '../services/oddBackend';
 import {
   autoSubmitMissingAnswersAndReview,

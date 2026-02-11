@@ -6,7 +6,7 @@ import {
   useMemo,
   useReducer
 } from 'react';
-import words from '../../../data/words.json';
+import words from '../../../../data/words.json';
 
 type Role = 'Agent' | 'Spy' | 'MrWhite';
 
