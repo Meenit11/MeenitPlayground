@@ -1,0 +1,85 @@
+:root {
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
+  --transition-fast: 0.18s ease-out;
+  --transition-med: 0.25s ease-out;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+}
+
+.theme-home {
+  --bg: #050817;
+  --bg-alt: #0f172a;
+  --accent: #f97316;
+  --accent-soft: rgba(249, 115, 22, 0.16);
+  --accent-2: #22c55e;
+  --accent-3: #38bdf8;
+  --text: #e5e7eb;
+  --text-muted: #9ca3af;
+  --card-bg: rgba(15, 23, 42, 0.96);
+
+  background: radial-gradient(circle at top, #1e293b, var(--bg));
+  color: var(--text);
+}
+
+.theme-home .page-root {
+  background: radial-gradient(circle at top, #1e293b, var(--bg));
+}
+
+.theme-odd {
+  --bg: #050816;
+  --bg-alt: #111827;
+  --accent: #e11d48;
+  --accent-soft: rgba(225, 29, 72, 0.18);
+  --accent-2: #facc15;
+  --accent-3: #22c55e;
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --card-bg: rgba(15, 23, 42, 0.98);
+}
+
+.theme-undercover {
+  --bg: #020617;
+  --bg-alt: #020617;
+  --accent: #22c55e;
+  --accent-soft: rgba(34, 197, 94, 0.18);
+  --accent-2: #0ea5e9;
+  --accent-3: #facc15;
+  --text: #e5e7eb;
+  --text-muted: #64748b;
+  --card-bg: rgba(15, 23, 42, 0.98);
+}
+
+.theme-mafia {
+  --bg: #020617;
+  --bg-alt: #111827;
+  --accent: #ef4444;
+  --accent-soft: rgba(239, 68, 68, 0.22);
+  --accent-2: #facc15;
+  --accent-3: #6b7280;
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --card-bg: rgba(15, 23, 42, 0.99);
+}
+
+.theme-odd .page-root,
+.theme-undercover .page-root,
+.theme-mafia .page-root {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.game-card-odd {
+  border: 1px solid rgba(225, 29, 72, 0.4);
+}
+
+.game-card-undercover {
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.game-card-mafia {
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
