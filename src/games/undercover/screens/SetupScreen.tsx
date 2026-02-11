@@ -1,11 +1,14 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUndercover } from '../context/UndercoverContext';
+import { Modal } from '../../../shared/Modal';
+import { UndercoverRules } from '../UndercoverRules';
 
 export function UndercoverSetupScreen() {
   const { state, dispatch } = useUndercover();
   const navigate = useNavigate();
   const [nameInput, setNameInput] = useState('');
+  const [showRules, setShowRules] = useState(false);
 
   const agents = useMemo(
     () => state.totalPlayers - state.mrWhiteCount - state.spyCount,
@@ -26,12 +29,25 @@ export function UndercoverSetupScreen() {
   };
 
   const adjustMrWhite = (delta: number) => {
-    const next = Math.max(0, state.mrWhiteCount + delta);
+    let next = Math.max(0, state.mrWhiteCount + delta);
+    let spy = state.spyCount;
+    let total = state.totalPlayers;
+    // Ensure agents > (MrWhite + Spy)
+    while (total - next - spy <= next + spy) {
+      total += 1;
+    }
+    dispatch({ type: 'setTotal', total });
     dispatch({ type: 'setMrWhite', count: next });
   };
 
   const adjustSpy = (delta: number) => {
-    const next = Math.max(0, state.spyCount + delta);
+    let next = Math.max(0, state.spyCount + delta);
+    let mrw = state.mrWhiteCount;
+    let total = state.totalPlayers;
+    while (total - mrw - next <= mrw + next) {
+      total += 1;
+    }
+    dispatch({ type: 'setTotal', total });
     dispatch({ type: 'setSpy', count: next });
   };
 
@@ -64,7 +80,19 @@ export function UndercoverSetupScreen() {
 
   return (
     <form className="home-section" onSubmit={onSubmit}>
-      <h2 className="section-title">Setup</h2>
+      <div className="form-label" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
+        <h2 className="section-title" style={{ marginBottom: 0 }}>
+          Setup
+        </h2>
+        <button
+          type="button"
+          className="btn-ghost"
+          onClick={() => setShowRules(true)}
+          style={{ fontSize: '0.8rem' }}
+        >
+          How to play
+        </button>
+      </div>
 
       <div className="form-label">
         <span>Total players</span>
@@ -156,6 +184,10 @@ export function UndercoverSetupScreen() {
       <button className="btn-primary" type="submit" disabled={hasError}>
         Start Game
       </button>
+
+      <Modal title="How to play Undercover" open={showRules} onClose={() => setShowRules(false)}>
+        <UndercoverRules />
+      </Modal>
     </form>
   );
 }

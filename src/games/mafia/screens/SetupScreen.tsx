@@ -1,11 +1,14 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMafia } from '../context/MafiaContext';
+import { Modal } from '../../../shared/Modal';
+import { MafiaRules } from '../MafiaRules';
 
 export function MafiaSetupScreen() {
   const { state, dispatch } = useMafia();
   const navigate = useNavigate();
   const [names, setNames] = useState<string[]>(state.playerNames.length ? state.playerNames : Array.from({ length: state.totalPlayers }, () => ''));
+  const [showRules, setShowRules] = useState(false);
 
   const civilians = useMemo(() => {
     const specials =
@@ -68,7 +71,19 @@ export function MafiaSetupScreen() {
 
   return (
     <form className="home-section" onSubmit={onSubmit}>
-      <h2 className="section-title">Setup</h2>
+      <div className="form-label" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
+        <h2 className="section-title" style={{ marginBottom: 0 }}>
+          Setup
+        </h2>
+        <button
+          type="button"
+          className="btn-ghost"
+          onClick={() => setShowRules(true)}
+          style={{ fontSize: '0.8rem' }}
+        >
+          How to play
+        </button>
+      </div>
 
       <div className="form-label">
         <span>Total players</span>
@@ -184,6 +199,10 @@ export function MafiaSetupScreen() {
       <button className="btn-primary" type="submit" disabled={hasError}>
         Start Game
       </button>
+
+      <Modal title="How to play Mafia" open={showRules} onClose={() => setShowRules(false)}>
+        <MafiaRules />
+      </Modal>
     </form>
   );
 }

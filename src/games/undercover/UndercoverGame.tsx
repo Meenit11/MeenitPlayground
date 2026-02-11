@@ -9,6 +9,7 @@ import { UndercoverEliminationScreen } from './screens/EliminationScreen';
 import { UndercoverRoleRevealScreen } from './screens/RoleRevealScreen';
 import { MrWhiteGuessScreen } from './screens/MrWhiteGuessScreen';
 import { UndercoverWinnerScreen } from './screens/WinnerScreen';
+import { UndercoverRules } from './UndercoverRules';
 
 function UndercoverLanding() {
   return (
@@ -22,7 +23,12 @@ function UndercoverLanding() {
           />
           <p className="home-tagline">Trust no one… especially yourself.</p>
         </header>
-        <UndercoverSetupScreen />
+        <section className="home-section">
+          <UndercoverRules />
+        </section>
+        <section className="home-section">
+          <UndercoverSetupScreen />
+        </section>
       </PageContainer>
     </div>
   );

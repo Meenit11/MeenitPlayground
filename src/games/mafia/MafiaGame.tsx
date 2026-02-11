@@ -9,6 +9,7 @@ import { MafiaNightPhaseScreen } from './screens/NightPhaseScreen';
 import { MafiaMorningResultsScreen } from './screens/MorningResultsScreen';
 import { MafiaDayPhaseScreen } from './screens/DayPhaseScreen';
 import { MafiaWinnerScreen } from './screens/WinnerScreen';
+import { MafiaRules } from './MafiaRules';
 
 function MafiaLanding() {
   return (
@@ -18,7 +19,12 @@ function MafiaLanding() {
           <img src="/images/Mafia Logo.png" alt="Mafia" className="home-logo" />
           <p className="home-tagline">Family dinners, but with voting.</p>
         </header>
-        <MafiaSetupScreen />
+        <section className="home-section">
+          <MafiaRules />
+        </section>
+        <section className="home-section">
+          <MafiaSetupScreen />
+        </section>
       </PageContainer>
     </div>
   );

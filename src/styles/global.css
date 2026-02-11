@@ -282,6 +282,73 @@ a {
   box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.7);
 }
 
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 40;
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  background: #020617;
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding: 1rem 1.2rem 1.25rem;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  overflow-y: auto;
+  padding-right: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.modal-body h3 {
+  font-size: 0.95rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.modal-body p {
+  margin: 0.2rem 0;
+}
+
+.modal-body ul {
+  padding-left: 1.1rem;
+  margin: 0.2rem 0 0.4rem;
+}
+
 .timer-pill {
   display: inline-flex;
   align-items: center;
