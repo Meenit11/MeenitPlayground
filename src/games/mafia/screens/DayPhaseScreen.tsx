@@ -21,7 +21,7 @@ export function MafiaDayPhaseScreen() {
   };
 
   const onSkip = () => {
-    dispatch({ type: 'gotoDay' });
+    dispatch({ type: 'skipToNight' });
     navigate('/mafia/night');
   };
 

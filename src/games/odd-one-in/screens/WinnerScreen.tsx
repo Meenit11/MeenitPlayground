@@ -5,7 +5,7 @@ import { useOddRoom } from '../context/OddRoomContext';
 
 export function WinnerScreen() {
   const { code } = useParams<{ code: string }>();
-  const { room } = useOddRoom();
+  const { room, isKicked, leaveRoom } = useOddRoom();
   const navigate = useNavigate();
 
   if (!room || !code || room.code !== code) {
@@ -13,6 +13,39 @@ export function WinnerScreen() {
       <div className="theme-odd odd-shell">
         <PageContainer>
           <p className="home-tagline">Loading room…</p>
+        </PageContainer>
+      </div>
+    );
+  }
+
+  if (isKicked) {
+    return (
+      <div className="theme-odd odd-shell">
+        <PageContainer>
+          <p className="home-tagline">You were removed from the room.</p>
+          <div className="home-section">
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => {
+                leaveRoom();
+                navigate('/odd-one-in/join');
+              }}
+            >
+              Join another room
+            </button>
+            <button
+              type="button"
+              className="btn-ghost"
+              style={{ marginTop: '0.5rem' }}
+              onClick={() => {
+                leaveRoom();
+                navigate('/');
+              }}
+            >
+              Back to Home
+            </button>
+          </div>
         </PageContainer>
       </div>
     );

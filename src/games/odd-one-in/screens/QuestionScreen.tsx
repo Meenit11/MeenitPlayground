@@ -23,7 +23,7 @@ function pickQuestion(tier: QuestionTier) {
 
 export function QuestionScreen() {
   const { code } = useParams<{ code: string }>();
-  const { room, playerId, isGameMaster } = useOddRoom();
+  const { room, playerId, isGameMaster, isKicked, leaveRoom } = useOddRoom();
   const navigate = useNavigate();
   const [localAnswer, setLocalAnswer] = useState('');
   const [now, setNow] = useState(Date.now());
@@ -38,6 +38,39 @@ export function QuestionScreen() {
       <div className="theme-odd odd-shell">
         <PageContainer>
           <p className="home-tagline">Loading room…</p>
+        </PageContainer>
+      </div>
+    );
+  }
+
+  if (isKicked) {
+    return (
+      <div className="theme-odd odd-shell">
+        <PageContainer>
+          <p className="home-tagline">You were removed from the room.</p>
+          <div className="home-section">
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => {
+                leaveRoom();
+                navigate('/odd-one-in/join');
+              }}
+            >
+              Join another room
+            </button>
+            <button
+              type="button"
+              className="btn-ghost"
+              style={{ marginTop: '0.5rem' }}
+              onClick={() => {
+                leaveRoom();
+                navigate('/');
+              }}
+            >
+              Back to Home
+            </button>
+          </div>
         </PageContainer>
       </div>
     );

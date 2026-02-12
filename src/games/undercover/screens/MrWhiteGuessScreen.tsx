@@ -21,6 +21,7 @@ export function MrWhiteGuessScreen() {
       <PageContainer>
         <header className="home-header">
           <h2 className="section-title">Mr. White&apos;s Last Chance</h2>
+          <p className="home-tagline">Pass the phone to Mr. White.</p>
           <p className="home-tagline">Guess the Agents&apos; word to steal the win.</p>
         </header>
 

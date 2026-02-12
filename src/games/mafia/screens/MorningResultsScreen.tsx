@@ -27,7 +27,7 @@ export function MafiaMorningResultsScreen() {
       <PageContainer>
         <header className="home-header">
           <h2 className="section-title">Morning Results</h2>
-          <p className="home-tagline">Everyone wake up! See who survived the night.</p>
+          <p className="home-tagline">Everyone wake up! From your notes, who (if anyone) did not survive? Lover and Doctor outcomes are already in your notes.</p>
         </header>
 
         <section className="home-section">
@@ -37,7 +37,7 @@ export function MafiaMorningResultsScreen() {
         </section>
 
         <section className="home-section">
-          <p className="home-tagline">Or select who died:</p>
+          <p className="home-tagline">Or select who died tonight:</p>
           <ul className="player-list">
             {alive.map((p) => (
               <li

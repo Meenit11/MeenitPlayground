@@ -29,18 +29,22 @@ export function UndercoverRoleRevealScreen() {
         ? '/images/Spy.png'
         : '/images/Agent.png';
 
+  const roleLabel =
+    eliminated.role === 'MrWhite' ? 'Mr. White' : eliminated.role === 'Spy' ? 'Spy' : 'Agent';
+
   return (
     <div className="theme-undercover under-shell">
       <PageContainer>
         <header className="home-header">
           <h2 className="section-title">Player Eliminated</h2>
+          <p className="home-tagline">Their true role is revealed. The word is not shown.</p>
         </header>
 
         <section className="home-section">
           <div className="game-card">
-            <img src={roleImage} alt={eliminated.role} className="game-card-logo" />
+            <img src={roleImage} alt={roleLabel} className="game-card-logo" />
             <h3 className="game-card-title">{eliminated.name}</h3>
-            <p className="home-tagline">Role: {eliminated.role}</p>
+            <p className="home-tagline">Role: {roleLabel}</p>
           </div>
         </section>
 

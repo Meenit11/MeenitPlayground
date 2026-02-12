@@ -22,6 +22,8 @@ type OddRoomContextValue = {
   error: string | null;
   playerId: string | null;
   isGameMaster: boolean;
+  /** True when room is loaded but current player is not in room.players (e.g. kicked). */
+  isKicked: boolean;
   createRoomWithName: (name: string) => Promise<string>;
   joinExistingRoom: (code: string, name: string) => Promise<void>;
   leaveRoom: () => Promise<void>;
@@ -122,6 +124,8 @@ export function OddRoomProvider({ children }: Props) {
   }, []);
 
   const isGameMaster = !!room && !!playerId && room.gameMasterId === playerId;
+  const isKicked =
+    !!room && !!playerId && !room.players.some((p) => p.id === playerId);
 
   const value: OddRoomContextValue = {
     room,
@@ -129,6 +133,7 @@ export function OddRoomProvider({ children }: Props) {
     error,
     playerId,
     isGameMaster,
+    isKicked,
     createRoomWithName,
     joinExistingRoom,
     leaveRoom: leaveRoomFn,

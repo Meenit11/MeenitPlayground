@@ -68,6 +68,7 @@ type Action =
   | { type: 'setLoverTarget'; playerId: string }
   | { type: 'setNightOutcome'; deathIds: string[] }
   | { type: 'gotoDay' }
+  | { type: 'skipToNight' }
   | { type: 'eliminateDay'; playerId: string; cause: 'vote' }
   | { type: 'setWinner'; winner: MafiaWinner };
 
@@ -183,6 +184,13 @@ function reducer(state: MafiaState, action: Action): MafiaState {
     }
     case 'gotoDay':
       return { ...state, phase: 'day', eliminatedTodayId: null };
+    case 'skipToNight':
+      return {
+        ...state,
+        phase: 'night',
+        round: state.round + 1,
+        eliminatedTodayId: null
+      };
     case 'eliminateDay': {
       const target = state.players.find((p) => p.id === action.playerId);
       if (!target) return state;

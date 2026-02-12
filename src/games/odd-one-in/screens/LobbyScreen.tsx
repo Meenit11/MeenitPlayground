@@ -1,12 +1,13 @@
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
 import { useOddRoom } from '../context/OddRoomContext';
 
 export function LobbyScreen() {
   const { code } = useParams<{ code: string }>();
-  const { room, isGameMaster, kick, close, playerId } = useOddRoom();
+  const { room, isGameMaster, isKicked, kick, close, leaveRoom, playerId } = useOddRoom();
   const navigate = useNavigate();
+  const [copyFeedback, setCopyFeedback] = useState<'idle' | 'copied' | 'error'>('idle');
 
   const playerCount = room?.players.length ?? 0;
 
@@ -37,6 +38,39 @@ export function LobbyScreen() {
     );
   }
 
+  if (isKicked) {
+    return (
+      <div className="theme-odd odd-shell">
+        <PageContainer>
+          <p className="home-tagline">You were removed from the room.</p>
+          <div className="home-section">
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => {
+                leaveRoom();
+                navigate('/odd-one-in/join');
+              }}
+            >
+              Join another room
+            </button>
+            <button
+              type="button"
+              className="btn-ghost"
+              style={{ marginTop: '0.5rem' }}
+              onClick={() => {
+                leaveRoom();
+                navigate('/');
+              }}
+            >
+              Back to Home
+            </button>
+          </div>
+        </PageContainer>
+      </div>
+    );
+  }
+
   const onShare = async () => {
     const message = `Join my Odd One In game! Room code: ${code}. Link: ${inviteLink}`;
     if (navigator.share) {
@@ -47,16 +81,20 @@ export function LobbyScreen() {
     }
   };
 
-  const onCopy = async () => {
+  const onCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(inviteLink);
-      // eslint-disable-next-line no-alert
-      alert('Invite link copied to clipboard');
+      setCopyFeedback('copied');
     } catch {
-      // eslint-disable-next-line no-alert
-      alert('Could not copy link. Please copy it manually.');
+      setCopyFeedback('error');
     }
-  };
+  }, [inviteLink]);
+
+  useEffect(() => {
+    if (copyFeedback === 'idle') return;
+    const t = setTimeout(() => setCopyFeedback('idle'), 2000);
+    return () => clearTimeout(t);
+  }, [copyFeedback]);
 
   const onStartGame = () => {
     if (!canStart) return;
@@ -83,9 +121,19 @@ export function LobbyScreen() {
               <button type="button" className="btn-primary" onClick={onShare}>
                 Share via WhatsApp
               </button>
-              <button type="button" className="btn-ghost" onClick={onCopy}>
-                Copy link
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <button type="button" className="btn-ghost" onClick={onCopy}>
+                  Copy link
+                </button>
+                {copyFeedback === 'copied' && (
+                  <span className="home-tagline" style={{ margin: 0, color: 'var(--accent-2)' }}>Copied!</span>
+                )}
+                {copyFeedback === 'error' && (
+                  <span className="home-tagline" style={{ margin: 0, color: 'var(--accent)' }}>
+                    Could not copy. Copy the link manually.
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </section>
