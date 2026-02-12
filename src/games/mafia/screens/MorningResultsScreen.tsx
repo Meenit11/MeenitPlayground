@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
+import { PaginatedList } from '../../../shared/PaginatedList';
 import { useMafia } from '../context/MafiaContext';
+import type { MafiaPlayer } from '../context/MafiaContext';
 
 export function MafiaMorningResultsScreen() {
   const { state, dispatch } = useMafia();
@@ -38,17 +40,28 @@ export function MafiaMorningResultsScreen() {
 
         <section className="home-section">
           <p className="home-tagline">Or select who died tonight:</p>
-          <ul className="player-list">
-            {alive.map((p) => (
-              <li
-                key={p.id}
-                className={`player-row ${victimId === p.id ? 'player-row-selected' : ''}`}
+          <PaginatedList<MafiaPlayer>
+            items={alive}
+            pageSize={6}
+            keyFn={(p) => p.id}
+            getItemClassName={(p) =>
+              `player-row ${victimId === p.id ? 'player-row-selected' : ''}`
+            }
+            emptyMessage="No players."
+            renderItem={(p) => (
+              <span
+                role="button"
+                tabIndex={0}
+                style={{ display: 'block', width: '100%' }}
                 onClick={() => setVictimId(p.id)}
+                onKeyDown={(ev) =>
+                  (ev.key === 'Enter' || ev.key === ' ') && setVictimId(p.id)
+                }
               >
-                <span>{p.name}</span>
-              </li>
-            ))}
-          </ul>
+                {p.name}
+              </span>
+            )}
+          />
           <button
             type="button"
             className="btn-ghost"

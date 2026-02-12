@@ -24,7 +24,7 @@ export function UndercoverRoleRevealScreen() {
 
   const roleImage =
     eliminated.role === 'MrWhite'
-      ? '/images/Mr White.png'
+      ? '/images/Mr. White.png'
       : eliminated.role === 'Spy'
         ? '/images/Spy.png'
         : '/images/Agent.png';

@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
+import { PaginatedList } from '../../../shared/PaginatedList';
 import { useOddRoom } from '../context/OddRoomContext';
+import type { OddPlayer } from '../services/oddBackend';
 
 export function LobbyScreen() {
   const { code } = useParams<{ code: string }>();
@@ -142,9 +144,14 @@ export function LobbyScreen() {
           <h3 className="section-title">
             Players ({playerCount}) {gm ? `— GM: ${gm.name}` : ''}
           </h3>
-          <ul className="player-list">
-            {room.players.map((p) => (
-              <li key={p.id} className="player-row">
+          <PaginatedList<OddPlayer>
+            items={room.players}
+            pageSize={6}
+            keyFn={(p) => p.id}
+            itemClassName="player-row"
+            emptyMessage="No players yet"
+            renderItem={(p) => (
+              <>
                 <span>
                   {p.name}{' '}
                   {p.isGameMaster && (
@@ -164,9 +171,9 @@ export function LobbyScreen() {
                     ❌
                   </button>
                 )}
-              </li>
-            ))}
-          </ul>
+              </>
+            )}
+          />
           {!isGameMaster && (
             <p className="home-tagline">Waiting for Game Master to start…</p>
           )}

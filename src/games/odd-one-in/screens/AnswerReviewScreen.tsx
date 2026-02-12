@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
+import { PaginatedList } from '../../../shared/PaginatedList';
 import { useOddRoom } from '../context/OddRoomContext';
 import { eliminatePlayersAndMaybeFinish, OddPlayer } from '../services/oddBackend';
 
@@ -116,45 +117,57 @@ export function AnswerReviewScreen() {
 
         <section className="home-section">
           <h3 className="section-title">No Answers</h3>
-          <ul className="player-list">
-            {blanks.map((entry) => (
-              <li
-                key={entry.player.id}
-                className={`player-row ${selectedIds.includes(entry.player.id) ? 'player-row-selected' : ''}`}
+          <PaginatedList<DisplayAnswer>
+            items={blanks}
+            pageSize={6}
+            keyFn={(e) => e.player.id}
+            itemClassName="player-row"
+            getItemClassName={(e) =>
+              `player-row ${selectedIds.includes(e.player.id) ? 'player-row-selected' : ''}`
+            }
+            emptyMessage="No blanks this round."
+            renderItem={(entry) => (
+              <span
+                role="button"
+                tabIndex={0}
+                style={{ display: 'block', width: '100%' }}
                 onClick={() => isGameMaster && toggleSelect(entry.player.id)}
+                onKeyDown={(ev) =>
+                  isGameMaster && (ev.key === 'Enter' || ev.key === ' ') && toggleSelect(entry.player.id)
+                }
               >
-                <span>
-                  {entry.player.name} | (No Answer)
-                </span>
-              </li>
-            ))}
-            {blanks.length === 0 && (
-              <li className="player-row">
-                <span>No blanks this round.</span>
-              </li>
+                {entry.player.name} | (No Answer)
+              </span>
             )}
-          </ul>
+          />
         </section>
 
         <section className="home-section">
           <h3 className="section-title">Answers</h3>
-          <ul className="player-list">
-            {nonBlanks.map((entry) => {
+          <PaginatedList<DisplayAnswer>
+            items={nonBlanks}
+            pageSize={6}
+            keyFn={(e) => e.player.id}
+            getItemClassName={(entry) => {
               const key = entry.text.toLowerCase();
               const isDuplicate = (freq.get(key) ?? 0) > 1;
-              return (
-                <li
-                  key={entry.player.id}
-                  className={`player-row ${selectedIds.includes(entry.player.id) ? 'player-row-selected' : ''} ${isDuplicate ? 'player-row-duplicate' : ''}`}
-                  onClick={() => isGameMaster && toggleSelect(entry.player.id)}
-                >
-                  <span>
-                    {entry.player.name} | {entry.text}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+              return `player-row ${selectedIds.includes(entry.player.id) ? 'player-row-selected' : ''} ${isDuplicate ? 'player-row-duplicate' : ''}`;
+            }}
+            emptyMessage="No answers this round."
+            renderItem={(entry) => (
+              <span
+                role="button"
+                tabIndex={0}
+                style={{ display: 'block', width: '100%' }}
+                onClick={() => isGameMaster && toggleSelect(entry.player.id)}
+                onKeyDown={(ev) =>
+                  isGameMaster && (ev.key === 'Enter' || ev.key === ' ') && toggleSelect(entry.player.id)
+                }
+              >
+                {entry.player.name} | {entry.text}
+              </span>
+            )}
+          />
         </section>
 
         {isGameMaster && (

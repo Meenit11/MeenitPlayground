@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
+import { PaginatedList } from '../../../shared/PaginatedList';
 import { useMafia } from '../context/MafiaContext';
+import type { MafiaPlayer } from '../context/MafiaContext';
 
 export function MafiaDayPhaseScreen() {
   const { state, dispatch } = useMafia();
@@ -34,17 +36,28 @@ export function MafiaDayPhaseScreen() {
         </header>
 
         <section className="home-section">
-          <ul className="player-list">
-            {alive.map((p) => (
-              <li
-                key={p.id}
-                className={`player-row ${selectedId === p.id ? 'player-row-selected' : ''}`}
+          <PaginatedList<MafiaPlayer>
+            items={alive}
+            pageSize={6}
+            keyFn={(p) => p.id}
+            getItemClassName={(p) =>
+              `player-row ${selectedId === p.id ? 'player-row-selected' : ''}`
+            }
+            emptyMessage="No players."
+            renderItem={(p) => (
+              <span
+                role="button"
+                tabIndex={0}
+                style={{ display: 'block', width: '100%' }}
                 onClick={() => setSelectedId(p.id)}
+                onKeyDown={(ev) =>
+                  (ev.key === 'Enter' || ev.key === ' ') && setSelectedId(p.id)
+                }
               >
-                <span>{p.name}</span>
-              </li>
-            ))}
-          </ul>
+                {p.name}
+              </span>
+            )}
+          />
         </section>
 
         <section className="home-section">

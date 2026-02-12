@@ -36,7 +36,7 @@ export function RoleViewingScreen() {
         <section className="home-section">
           {player.role === 'MrWhite' ? (
             <div className="game-card">
-              <img src="/images/Mr White.png" alt="Mr. White" className="game-card-logo" />
+              <img src="/images/Mr. White.png" alt="Mr. White" className="game-card-logo" />
               <h3 className="game-card-title">You&apos;re Mr. White</h3>
               <p className="home-tagline">Blend in and guess the word!</p>
               <div className="home-section">

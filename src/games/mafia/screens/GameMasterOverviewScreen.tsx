@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
+import { PaginatedList } from '../../../shared/PaginatedList';
 import { useMafia } from '../context/MafiaContext';
+import type { MafiaPlayer } from '../context/MafiaContext';
 
 export function MafiaGameMasterOverviewScreen() {
   const { state } = useMafia();
@@ -19,15 +21,18 @@ export function MafiaGameMasterOverviewScreen() {
         </header>
 
         <section className="home-section">
-          <ul className="player-list">
-            {state.players.map((p) => (
-              <li key={p.id} className="player-row">
-                <span>
-                  {p.name} – {p.role}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <PaginatedList<MafiaPlayer>
+            items={state.players}
+            pageSize={6}
+            keyFn={(p) => p.id}
+            itemClassName="player-row"
+            emptyMessage="No players."
+            renderItem={(p) => (
+              <span>
+                {p.name} – {p.role}
+              </span>
+            )}
+          />
         </section>
 
         <section className="home-section">

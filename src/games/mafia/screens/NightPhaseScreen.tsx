@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PageContainer } from '../../../shared/PageContainer';
+import { PaginatedList } from '../../../shared/PaginatedList';
 import { useMafia } from '../context/MafiaContext';
+import type { MafiaPlayer } from '../context/MafiaContext';
 
 export function MafiaNightPhaseScreen() {
   const { state, dispatch } = useMafia();
@@ -13,6 +15,10 @@ export function MafiaNightPhaseScreen() {
   const doctor = alive.find((p) => p.role === 'Doctor');
   const detective = alive.find((p) => p.role === 'Detective');
   const lover = alive.find((p) => p.role === 'Lover');
+  const loverTargetCandidates = useMemo(
+    () => (lover ? alive.filter((p) => p.id !== lover.id) : []),
+    [alive, lover]
+  );
 
   const onComplete = () => {
     if (lover && !state.loverTargetId && loverTargetId) {
@@ -67,19 +73,28 @@ export function MafiaNightPhaseScreen() {
               <p className="home-tagline">
                 Lover wake up! Choose who you want to protect permanently, then go back to sleep.
               </p>
-              <ul className="player-list">
-                {alive
-                  .filter((p) => p.id !== lover.id)
-                  .map((p) => (
-                    <li
-                      key={p.id}
-                      className={`player-row ${loverTargetId === p.id ? 'player-row-selected' : ''}`}
-                      onClick={() => setLoverTargetId(p.id)}
-                    >
-                      <span>{p.name}</span>
-                    </li>
-                  ))}
-              </ul>
+              <PaginatedList<MafiaPlayer>
+                items={loverTargetCandidates}
+                pageSize={6}
+                keyFn={(p) => p.id}
+                getItemClassName={(p) =>
+                  `player-row ${loverTargetId === p.id ? 'player-row-selected' : ''}`
+                }
+                emptyMessage="No one to protect."
+                renderItem={(p) => (
+                  <span
+                    role="button"
+                    tabIndex={0}
+                    style={{ display: 'block', width: '100%' }}
+                    onClick={() => setLoverTargetId(p.id)}
+                    onKeyDown={(ev) =>
+                      (ev.key === 'Enter' || ev.key === ' ') && setLoverTargetId(p.id)
+                    }
+                  >
+                    {p.name}
+                  </span>
+                )}
+              />
             </div>
           )}
         </section>
